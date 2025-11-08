@@ -63,20 +63,30 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Contact form submission
+    // Contact form submission - check for success query parameter
     const contactForm = document.getElementById('contactForm');
     const successMessage = document.getElementById('successMessage');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Simulate form submission (replace with actual form submission logic)
-            setTimeout(function() {
-                contactForm.style.display = 'none';
-                successMessage.style.display = 'block';
-            }, 1000);
-        });
+    // Check for form_submitted query parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.get('form_submitted') === 'true') {
+        if (contactForm) {
+            contactForm.style.display = 'none';
+        }
+        if (successMessage) {
+            successMessage.style.display = 'block';
+        }
+        
+        // Clean up URL by removing query parameter (preserve hash if present)
+        const cleanUrl = window.location.pathname + window.location.hash;
+        window.history.replaceState({}, document.title, cleanUrl);
+        
+        // Scroll to success message
+        if (successMessage) {
+            setTimeout(() => {
+                successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 100);
+        }
     }
     
     // Animations for elements on scroll
