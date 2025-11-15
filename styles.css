@@ -1066,62 +1066,6 @@ footer .logo h2 {
     }
 } 
 
-/* SB‑253 Hover Box Styling */
-.sb253-hover {
-position: relative;
-display: inline-block;
-cursor: pointer;
-color: var(--primary-color);
-border-bottom: 1px dotted var(--primary-color);
-}
-
-
-.sb253-hover-box {
-position: absolute;
-top: 100%;
-left: 0;
-width: 280px;
-background: var(--white);
-border: 1px solid var(--border-color);
-box-shadow: var(--box-shadow);
-padding: 15px;
-border-radius: 4px;
-z-index: 50;
-opacity: 0;
-transform: translateY(10px);
-pointer-events: none;
-transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-
-.sb253-hover:hover .sb253-hover-box {
-opacity: 1;
-transform: translateY(0);
-pointer-events: auto;
-}
-
-
-.sb253-hover-box h4 {
-font-size: 16px;
-margin-bottom: 8px;
-color: var(--primary-color);
-}
-
-
-.sb253-hover-box ul {
-padding-left: 18px;
-}
-
-
-.sb253-hover-box ul li {
-margin-bottom: 6px;
-font-size: 14px;
-}
-
-
-/* --- END SB‑253 ADDITIONS --- */
-
-
 /* SB-253 Compliance Hover Box */
 .sb253-hover {
 position: relative;
