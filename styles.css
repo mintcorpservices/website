@@ -186,7 +186,7 @@ nav ul li a:hover::after {
 .hero {
     padding-top: 100px;
     height: 70vh;
-    min-height: 500px;
+    min-height: 550px;
     background: var(--primary-color);
     color: var(--white);
     display: flex;
@@ -358,7 +358,7 @@ nav ul li a:hover::after {
     }
 }
 
-/* About Section */
+/* About Section background + wrapper (previous styling) */
 .about {
     padding: 100px 0;
     background-color: var(--light-bg);
@@ -378,26 +378,133 @@ nav ul li a:hover::after {
     opacity: 0.05;
 }
 
+/* Main About container */
 .about-content {
-    max-width: 800px;
+    max-width: 900px;            /* from your block snippet */
     margin: 0 auto;
-    text-align: center;
     position: relative;
     z-index: 2;
-    background-color: var(--white);
-    padding: 50px 60px;
-    border-radius: 0;
-    backdrop-filter: none;
-    box-shadow: var(--box-shadow);
-    border: 1px solid var(--border-color);
 }
 
+/* Base paragraph styling (kept from previous) */
 .about-content p {
     margin-bottom: 20px;
     font-size: 17px;
     line-height: 1.8;
     color: var(--text-color);
 }
+
+/* =============================== */
+/* Card-style stacked blocks       */
+/* =============================== */
+.about-block {
+    background-color: var(--white);
+    padding: 30px;
+    box-shadow: var(--box-shadow);
+    border: 1px solid var(--border-color);
+    margin-bottom: 25px;
+    border-radius: 0;
+
+    /* two columns: image + text */
+    display: flex;
+    align-items: center;
+    gap: 25px;
+}
+
+/* Headings */
+.about-block h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: var(--dark-bg);
+}
+
+/* Paragraphs inside blocks */
+.about-block p {
+    margin-bottom: 14px;
+    font-size: 16px;
+    line-height: 1.7;
+    color: var(--text-color);
+}
+
+/* Lists */
+.about-block ul {
+    margin-left: 20px;
+    margin-bottom: 14px;
+}
+
+.about-block ul li {
+    list-style-type: disc;
+    margin-bottom: 6px;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-color);
+}
+
+.about-block ul li::marker {
+    color: var(--primary-color);
+}
+
+/* =============================== */
+/* Image styling inside card       */
+/* =============================== */
+.about-block img {
+    width: 40%;
+    height: auto;
+    border-radius: 6px;
+    object-fit: cover;
+    box-shadow: var(--box-shadow);
+}
+
+/* Text column */
+.about-block .text {
+    width: 60%;
+    text-align: left;
+}
+
+/* =============================== */
+/* Alternating left/right layout   */
+/* =============================== */
+.block-left img {
+    order: 1;
+}
+.block-left .text {
+    order: 2;
+}
+
+.block-right img {
+    order: 2;
+}
+.block-right .text {
+    order: 1;
+}
+
+/* =============================== */
+/* Responsive adjustments          */
+/* =============================== */
+@media (max-width: 768px) {
+    .about-block {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .about-block img,
+    .about-block .text {
+        width: 100%;
+    }
+
+    .about-block .text {
+        text-align: center;
+    }
+
+    .about-block ul {
+        margin-left: 0;
+        text-align: left;
+        display: inline-block;
+    }
+}
+
+
 
 /* Services Section */
 .services {
@@ -424,6 +531,7 @@ nav ul li a:hover::after {
     border: 1px solid var(--border-color);
 }
 
+/* Optional old before effect (can be removed if unused) */
 .service-card::before {
     content: '';
     position: absolute;
@@ -446,9 +554,11 @@ nav ul li a:hover::after {
     border-color: var(--primary-color);
 }
 
-.service-card:hover .icon,
-.service-card:hover h3 {
-    color: var(--primary-color);
+/* Icon + title  */
+.service-inner {
+    position: relative;
+    z-index: 1;
+    transition: var(--transition);
 }
 
 .service-card .icon {
@@ -465,7 +575,68 @@ nav ul li a:hover::after {
     font-weight: 600;
 }
 
+/* Change color on hover */
+.service-card:hover .icon,
+.service-card:hover h3 {
+    color: var(--primary-color);
+}
+
+/* Hide inner content slightly on hover */
+.service-card:hover .service-inner {
+    opacity: 0;
+    transform: translateY(-6px);
+}
+
+/* Overlay that appears on hover */
+.service-overlay {
+    position: absolute;
+    inset: 0;
+    padding: 25px 20px;
+    background-color: var(--primary-color);
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(12px);
+    transition: opacity 0.4s ease-in-out, transform 0.4s ease-in-out;
+}
+
+.service-overlay h4 {
+    font-size: 20px;
+    margin-bottom: 10px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.service-overlay ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 14px;
+}
+
+.service-overlay li + li {
+    margin-top: 4px;
+}
+
+/* Show overlay on hover */
+.service-card:hover .service-overlay {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
 /* LLC Services Section */
+.llc-subtext{
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 25px;
+    color: var(--white);
+    font-weight: 400;
+}
 .llc-services {
     padding: 100px 0;
     background: var(--dark-bg);
@@ -494,6 +665,7 @@ nav ul li a:hover::after {
 .llc-services .divider {
     background: var(--white);
     opacity: 0.8;
+    
 }
 
 .llc-services-content {
@@ -768,21 +940,105 @@ footer {
     padding: 60px 0 20px;
 }
 
+/* Main footer layout */
 .footer-content {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
     margin-bottom: 40px;
 }
 
-footer .logo h2 {
-    font-size: 24px;
+/* Footer Column Title */
+.footer-col h4 {
+    font-size: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    margin-bottom: 15px;
     color: var(--white);
-    font-family: 'Inter', sans-serif;
+    
 }
 
+
+
+
+/* Logo Column */
+footer .logo h2 {
+    font-size: 24px;
+    font-family: 'Inter', sans-serif;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.footer-col p {
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+/* Quick Links */
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+    
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    font-size: 15px;
+    
+    transition: 0.3s;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+    padding-left: 3px;
+}
+
+.quick-links-col {
+    text-align: left;
+}
+
+.quick-links-col h4 {
+    text-align: left;
+    justify-content: flex-start;
+}
+
+.quick-links-col .footer-links {
+    text-align: left;
+    margin: 0;
+}
+
+/* Mobile: center align */
+@media screen and (max-width: 768px) {
+    .quick-links-col {
+        text-align: center;
+    }
+
+    .quick-links-col h4 {
+        text-align: center;
+        justify-content: center;
+    }
+
+    .quick-links-col .footer-links {
+        margin: 0 auto;
+        text-align: center;
+        width: fit-content;
+    }
+}
+
+
+/* Social Icons */
 .social-links {
     display: flex;
+    justify-content: center;
     gap: 15px;
 }
 
@@ -795,7 +1051,7 @@ footer .logo h2 {
     background-color: rgba(255, 255, 255, 0.1);
     color: var(--white);
     border-radius: 50%;
-    transition: var(--transition);
+    transition: 0.3s ease;
     font-size: 18px;
 }
 
@@ -803,16 +1059,28 @@ footer .logo h2 {
     transform: translateY(-5px);
 }
 
+/* Hover Colors */
 .social-links a:nth-child(1):hover {
-    background: #3b5998;
+    background: #3b5998; /* Facebook */
 }
 
 .social-links a:nth-child(2):hover {
-    background: #0077b5;
+    background: #0077b5; /* LinkedIn */
 }
 
 .social-links a:nth-child(3):hover {
-    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    background: #000;     
+              
+}
+
+
+/* Bottom Copyright */
+.copyright {
+    text-align: center;
+}
+
+.copyright p {
+    font-size: 14px;
 }
 
 .copyright {
@@ -820,6 +1088,7 @@ footer .logo h2 {
     padding-top: 20px;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
+
 
 /* Success Message */
 .success-message {
@@ -1124,3 +1393,26 @@ visibility: visible;
 opacity: 1;
 }
 
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 45px;
+    height: 45px;
+    background-color: var(--primary-color);
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    font-size: 22px;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    transition: opacity 0.3s ease, transform 0.3s ease;
+    z-index: 999;
+}
+
+#backToTop:hover {
+    transform: translateY(-4px);
+}
