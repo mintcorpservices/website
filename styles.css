@@ -1571,6 +1571,63 @@ visibility: visible;
 opacity: 1;
 }
 
+/* Generic Hover Info Box */
+.hover-info {
+    position: relative;
+    display: inline-block; /* Kept as inline-block but will be applied to spans inside LIs */
+    cursor: help;
+    color: var(--primary-color);
+    font-weight: 600;
+    border-bottom: 1px dotted var(--primary-color);
+}
+
+.hover-info-box {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    margin-bottom: 10px;
+    width: 300px;
+    max-width: 90vw;
+    background: var(--white);
+    border: 1px solid var(--border-color);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    padding: 18px 20px;
+    border-radius: 4px;
+    z-index: 1000;
+    transition: var(--transition);
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.hover-info-box strong {
+    display: block;
+    margin-bottom: 10px;
+    color: var(--primary-color);
+    font-size: 15px;
+}
+
+.hover-info-box p {
+    margin-bottom: 10px;
+    color: var(--text-color);
+}
+
+.hover-info-box ul {
+    padding-left: 20px;
+    list-style: disc;
+}
+
+.hover-info-box ul li {
+    margin-bottom: 6px;
+    color: var(--text-color);
+}
+
+.hover-info:hover .hover-info-box {
+    visibility: visible;
+    opacity: 1;
+}
+
 #backToTop {
     position: fixed;
     bottom: 30px;
