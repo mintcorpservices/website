@@ -153,10 +153,10 @@ document.addEventListener('DOMContentLoaded', function() {
         },
         {
             name: "Sanjiv Kaushik",
-            title: "Local Guide",
+            // title: "Local Guide",
             text: "A very diligent and sincere CPA service",
             rating: 5
-        }
+        },
     ];
 
     // Render Testimonials
